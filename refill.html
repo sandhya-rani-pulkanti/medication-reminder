@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refill</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <style>
+      .medication-item {
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="refill-container">
+      <h2>Track Your Pills</h2>
+
+      <!-- List of Medications -->
+      <div id="medications-list"></div>
+
+      <!-- Add Medication Button -->
+      <button id="addMedicationBtn" class="btn">Add Medication</button>
+      
+    <script>
+      const medicationsList = document.getElementById("medications-list");
+      const addMedicationBtn = document.getElementById("addMedicationBtn");
+
+      let medicationCount = 0;
+
+      // Function to add a new medication
+      function addMedication() {
+        medicationCount += 1;
+
+        // Create medication item container
+        const medicationItem = document.createElement("div");
+        medicationItem.classList.add("medication-item");
+        medicationItem.setAttribute("id", `medication-${medicationCount}`);
+
+        // Create label and input for stock
+        const label = document.createElement("label");
+        label.setAttribute("for", `med-stock-${medicationCount}`);
+        label.textContent = `Medication ${medicationCount} Stock`;
+
+        const input = document.createElement("input");
+        input.type = "number";
+        input.id = `med-stock-${medicationCount}`;
+        input.name = `med-stock-${medicationCount}`;
+        input.value = 30;
+        input.min = 0;
+        input.max = 100;
+
+        // Create "Take Pill" button
+        const takePillBtn = document.createElement("button");
+        takePillBtn.classList.add("take-pill-btn", "btn");
+        takePillBtn.textContent = "Take Pill";
+        takePillBtn.setAttribute("data-med-id", `med-stock-${medicationCount}`);
+
+        // Add event listener to the "Take Pill" button
+        takePillBtn.addEventListener("click", function () {
+          handleTakePill(`med-stock-${medicationCount}`);
+        });
+
+        // Append elements to the medication item container
+        medicationItem.appendChild(label);
+        medicationItem.appendChild(input);
+        medicationItem.appendChild(takePillBtn);
+
+        // Append the medication item to the medications list
+        medicationsList.appendChild(medicationItem);
+      }
+
+      // Function to handle taking a pill
+      function handleTakePill(medId) {
+        const stockInput = document.getElementById(medId);
+
+        // Reduce the stock by 1
+        let currentStock = parseInt(stockInput.value, 10);
+        if (currentStock > 0) {
+          currentStock -= 1;
+          stockInput.value = currentStock;
+
+          // Check if stock is 0 and alert the user
+          if (currentStock === 0) {
+            alert(
+              `Time for a refill for ${medId.replace(
+                "med-stock-",
+                "Medication "
+              )}!`
+            );
+          }
+        } else {
+          alert(
+            `No pills left for ${medId.replace(
+              "med-stock-",
+              "Medication "
+            )}! Please refill.`
+          );
+        }
+      }
+
+      // Add the first medication by default
+      addMedication();
+
+      // Add a new medication when the "Add Medication" button is clicked
+      addMedicationBtn.addEventListener("click", addMedication);
+    </script>
+  </body>
+</html>

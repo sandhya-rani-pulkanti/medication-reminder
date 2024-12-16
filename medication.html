@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medication Reminder</title>
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #1eb01e, #eef5fc);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Container Styling */
+      .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        width: 500px; /* Increased width */
+        padding: 30px;
+        text-align: center;
+      }
+
+      /* Header Styling */
+      .container h1 {
+        color: #4caf50;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      /* Form Input Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form label {
+        color: #1e4f72;
+        font-size: 1rem;
+        text-align: left;
+        margin-bottom: 5px;
+      }
+
+      form input,
+      form select {
+        font-size: 1rem;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #f9f9f9;
+        border-radius: 5px;
+        background-color: #eef5fc;
+        transition: border 0.3s;
+      }
+
+      form input:focus,
+      form select:focus {
+        outline: none;
+        border: 1px solid #1e81b0;
+      }
+
+      /* Days Checkbox Styling */
+      /* Weekday Container Styling */
+      .days-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px; /* Optional spacing between items */
+      }
+
+      .days-container label {
+        font-size: 0.9rem;
+        color: #1e4f72;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .days-container input[type="checkbox"] {
+        margin-right: 5px;
+      }
+
+      /* Button Styling */
+      form button {
+        background-color: #66bb6a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      form button:hover {
+        background-color: #166791;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li {
+        margin-bottom: 10px;
+      }
+
+      ul li button {
+        background-color: #ff5252;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Medication Reminder</h1>
+      <form>
+        <input
+          type="text"
+          id="medication-name"
+          placeholder="Medication Name"
+          required
+        /><br />
+        <input type="text" id="dosage" placeholder="Dosage" /><br />
+        <input type="number" id="frequency" placeholder="Frequency" /><br />
+        <input type="time" id="reminder-time" required /><br />
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date" required /><br />
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date" required /><br />
+        <div class="days-container">
+          <label>Select Days:</label><br />
+          <label><input type="checkbox" value="Monday" /> Monday</label><br />
+          <label><input type="checkbox" value="Tuesday" /> Tuesday</label><br />
+          <label><input type="checkbox" value="Wednesday" /> Wednesday</label
+          ><br />
+          <label><input type="checkbox" value="Thursday" /> Thursday</label
+          ><br />
+          <label><input type="checkbox" value="Friday" /> Friday</label><br />
+          <label><input type="checkbox" value="Saturday" /> Saturday</label
+          ><br />
+          <label><input type="checkbox" value="Sunday" /> Sunday</label>
+        </div>
+        <button type="button" id="add-reminder">Add Reminder</button>
+      </form>
+      <ul id="reminder-items"></ul>
+    </div>
+
+    <script src="medication.js"></script>
+    <!-- Add this script to your medication reminder page -->
+    <script>
+      const dailyCheckButton = document.getElementById("add-reminder");
+
+      dailyCheckButton.addEventListener("click", () => {
+        const selectedDays = Array.from(
+          document.querySelectorAll(
+            "#select-days input[type='checkbox']:checked"
+          )
+        ).map((checkbox) => checkbox.value);
+
+        if (selectedDays.length === 0) {
+          alert("Please select at least one day for your medication plan!");
+          return;
+        }
+
+        const startDate = document.getElementById("start-date").value;
+        const endDate = document.getElementById("end-date").value;
+
+        if (!startDate || !endDate) {
+          alert("Please set both a start and an end date.");
+          return;
+        }
+
+        // Save medication details in localStorage
+        const medicationPlan = {
+          selectedDays,
+          startDate,
+          endDate,
+        };
+
+        localStorage.setItem("medicationPlan", JSON.stringify(medicationPlan));
+        alert("Medication plan saved! Progress tracking is ready.");
+        window.location.href = "progress.html"; // Redirect to progress tracker
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #f0f4f8, #dcebf2);
+  color: #333;
+}
+
+/* Progress Container */
+.progress-container {
+  text-align: center;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  margin: 20px 0;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background: #e0e0e0;
+}
+
+progress::-webkit-progress-value {
+  background: #4caf50;
+}
+
+/* Encouragement Message */
+#message {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Button */
+#daily-check-btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#daily-check-btn:hover {
+  background-color: #45a049;
+}
+
+.btn-refill {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.btn-refill:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  /* background-color: #4caf50; */
+  background-color: rgb(246, 225, 207);
+  /* color: white; */
+  color: black;
+  padding: 10px 10px 40px 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a.btn {
+  /* background-color: #388e3c; */
+  background-color: rgb(191, 236, 227);
+  color: black;
+}
+
+nav ul li a:hover {
+  background-color: #66bb6a;
+}
+
+main {
+  padding: 30px 10px;
+  text-align: center;
+}
+
+.home-description {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.home-description p {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.8;
+}
+
+.quote-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.quote-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.quote-section p {
+  font-size: 1.2em;
+  color: #555;
+}
+.quote-section .author {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+footer {
+  margin-top: 23%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
+footer p {
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .header-container h1 {
+    font-size: 2em;
+  }
+
+  .home-description {
+    padding: 15px;
+  }
+}

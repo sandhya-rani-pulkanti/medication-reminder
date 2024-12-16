@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Tracker</title>
+    <link rel="stylesheet" href="progress.css" />
+  </head>
+  <body>
+    <div class="progress-container">
+      <h2>Track Your Medication Progress</h2>
+      <div class="progress-bar-container">
+        <label for="progress">Your Progress:</label>
+        <progress id="progress" value="0" max="100"></progress>
+        <p id="progress-percentage">0%</p>
+      </div>
+      <button id="daily-check-btn">Did you take your pill today?</button>
+      <p id="message"></p>
+    </div>
+
+    <script>
+      // Initialize progress and messages
+      const progressBar = document.getElementById("progress");
+      const progressPercentage = document.getElementById("progress-percentage");
+      const message = document.getElementById("message");
+      const dailyCheckButton = document.getElementById("daily-check-btn");
+
+      // Set total pills and daily progress
+      const totalDays = 30; // Example: User has a 30-day medication plan
+      let pillsTaken = 0;
+
+      // Function to update progress
+      function updateProgress() {
+        pillsTaken++;
+        const progress = (pillsTaken / totalDays) * 100;
+        progressBar.value = progress;
+        progressPercentage.textContent = `${Math.round(progress)}%`;
+
+        // Display encouragement message
+        if (progress < 50) {
+          message.textContent = "Great start! Keep taking your pills on time!";
+        } else if (progress < 100) {
+          message.textContent = "You're halfway there! Stay consistent!";
+        } else {
+          message.textContent =
+            "Congratulations! You completed your medication plan!";
+          dailyCheckButton.disabled = true; // Disable button after completion
+        }
+      }
+
+      // Handle daily pill check
+      dailyCheckButton.addEventListener("click", () => {
+        const userConfirmed = confirm("Did you take your pill today?");
+        if (userConfirmed) {
+          updateProgress();
+        } else {
+          message.textContent = "Remember to take your pills regularly!";
+        }
+      });
+    </script>
+  </body>
+</html>

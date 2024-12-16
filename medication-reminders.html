@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medication Reminders</title>
+    <link rel="stylesheet" href="medication-reminders.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>Manage Medication Reminders</h1>
+        <nav>
+          <ul>
+            <li><a href="login.html" class="btn">Login</a></li>
+            <li><a href="medication.html" class="btn">Add Medication</a></li>
+            <li><a href="pill-info.html">Pill Info</a></li>
+            <li><a href="progress.html" class="btn">Track Progress</a></li>
+            <li><a href="refill.html" class="btn">Refill Pills</a></li>
+            <li>
+              <a
+                href="interactive_medication_reminder/scripts/alarm.js"
+                class="btn"
+                >Set Alarm</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="reminder-container">
+        <h2>Create a New Medication Reminder</h2>
+        <form id="reminderForm">
+          <label for="med-name">Medication Name</label>
+          <input type="text" id="med-name" name="med-name" required />
+
+          <label for="dose">Dosage (mg)</label>
+          <input type="number" id="dose" name="dose" required />
+
+          <label for="frequency">Frequency</label>
+          <input type="text" id="frequency" name="frequency" required />
+
+          <label for="time">Time of Day</label>
+          <input type="time" id="time" name="time" required />
+
+          <label for="duration">Reminder Duration (in hours)</label>
+          <input type="number" id="duration" name="duration" required />
+
+          <button type="submit" class="btn">Set Reminder</button>
+        </form>
+
+        <div id="remindersList" class="reminders-list">
+          <!-- List of created reminders will appear here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Medication Reminder, All rights reserved.</p>
+    </footer>
+
+    <script src="medication-reminders.js"></script>
+  </body>
+</html>
